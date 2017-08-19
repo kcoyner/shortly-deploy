@@ -68,9 +68,15 @@ module.exports = function(grunt) {
     grunt.task.run([ 'nodemon', 'watch' ]);
   });
 
+  grunt.registerTask('prod', function () {
+    console.log(grunt.option('prod'));
+
+  });
+
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
+
 
   grunt.registerTask('test', [
     'mochaTest'
@@ -81,7 +87,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
-      // add your production server task here
+      // add your production server task here`
+      grunt.task.run([ 'prod' ]);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
@@ -93,3 +100,4 @@ module.exports = function(grunt) {
 
 
 };
+
