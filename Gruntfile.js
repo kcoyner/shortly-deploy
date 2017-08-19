@@ -51,6 +51,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        command: 'git push live master'
       }
     },
   });
@@ -68,10 +69,6 @@ module.exports = function(grunt) {
     grunt.task.run([ 'nodemon', 'watch' ]);
   });
 
-  grunt.registerTask('prod', function () {
-    console.log(grunt.option('prod'));
-
-  });
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
@@ -87,8 +84,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
-      // add your production server task here`
-      grunt.task.run([ 'prod' ]);
+      // add your production server task here
+      //grunt.task.run([ 'deploy' ]);
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
@@ -96,6 +93,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    //call upload if ready
+
   ]);
 
 
