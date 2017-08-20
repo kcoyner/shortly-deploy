@@ -12,7 +12,7 @@
     "start": "grunt build && grunt upload",
     "test": "grunt test",
     "lint": "eslint ./",
-    "deploy": "grunt upload --prod"
+    "deploy": "grunt deploy --prod"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
