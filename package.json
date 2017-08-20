@@ -11,8 +11,8 @@
   "scripts": {
     "start": "grunt build && grunt upload",
     "test": "grunt test",
-    "lint": "eslint ./",
-    "deploy": "grunt build && grunt upload --prod"
+    "lint": "eslint ./"
+    // "deploy": "grunt build && grunt upload --prod"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
