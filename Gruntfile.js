@@ -3,11 +3,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      options: {
-        separator: ';',
-      },
+      // options: {
+      //   separator: ';',
+      // },
       dist: {
-        src: ['public/client/*.js', 'public/lib/*.js', 'public/style.css'],
+        src: ['public/client/*.js', 'public/lib/*.js'],
         dest: 'public/dist/built.js',
       },
     },
@@ -28,6 +28,11 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      target: {
+        files: {
+          'public/dist/built.min.js': ['public/dist/built.js']
+        }
+      }
     },
 
     eslint: {
@@ -38,6 +43,11 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      target: {
+        files: {
+          'public/dist/output.min.css': ['public/style.css']
+        }
+      }
     },
 
     watch: {
