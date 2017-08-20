@@ -120,7 +120,6 @@ module.exports = function(grunt) {
      //test task
      //build task
      //upload task with prod option
-     /// comment
 
   ]);
 
