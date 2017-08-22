@@ -12,13 +12,13 @@ module.exports = function(grunt) {
           'public/lib/underscore.js',
           'public/lib/handlebars.js',
           'public/lib/backbone.js',
+          // 'public/client/app.js',
           'public/client/link.js',
-          'public/client/links.js',
           'public/client/linkView.js',
+          // 'public/client/creatLinkView.js',
           'public/client/linksView.js',
-          'public/client/creatLinkView.js',
-          'public/client/router.js',
-          'public/client/app.js'
+          'public/client/links.js',
+          'public/client/router.js'
         ],
         dest: 'public/dist/built.js',
       },
@@ -110,17 +110,11 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    //runs on server or local-dev
-    'concat', 'cssmin' ]
+    'concat', 'cssmin', 'uglify' ]
   );
 
   grunt.registerTask('upload', function(n) {
-    console.log(grunt.option('prod'));
     if (grunt.option('prod')) {
-      // shell task
-
-      //grunt.task.run([ 'deploy' ]);
-      console.log('production mode');
       grunt.task.run(['shell']);
     } else {
       grunt.task.run([ 'server-dev' ]);
