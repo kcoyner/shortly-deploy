@@ -117,11 +117,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
-    //
     'test', 'build', 'upload:' + grunt.option('prod')
 
   ]);
-
 
 };
 
