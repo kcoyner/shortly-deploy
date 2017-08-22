@@ -88,9 +88,9 @@ module.exports = function(grunt) {
   });
 
 
-  ////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
   // Main grunt tasks
-  ////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
 
 
   grunt.registerTask('test', [
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     //runs on server or local-dev
-    'concat', 'cssmin', 'uglify'
+    'concat', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
