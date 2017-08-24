@@ -1,30 +1,45 @@
-var db = require('../config');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
+var mongoose = require('mongoose');
 // console.log(db.Users)
 // var Users = db.Users;
 
 //console.log(Users)
+var Schema = mongoose.Schema;
 
-var User = db.Model.extend({
-  modelSchema: 'users',
-  hasTimestamps: true,
-  initialize: function() {
-    this.on('creating', this.hashPassword);
+var userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    index: {
+      unique: true
+    }
   },
-  comparePassword: function(attemptedPassword, callback) {
-    bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
-      callback(isMatch);
-    });
+  password: {
+    type: String
   },
-  hashPassword: function() {
-    var cipher = Promise.promisify(bcrypt.hash);
-    return cipher(this.get('password'), null, null).bind(this)
-      .then(function(hash) {
-        this.set('password', hash);
-      });
-  }
+  timestamps: Date
 });
 
-module.exports = User;
+var User = mongoose.model('user', userSchema);
+userSchema.pre('save', function(next) {
+  var cipher = Promise.promisify(bcrypt.hash);
+  return cipher(this.password, null, null).bind(this)
+    .then(function(hash) {
+      this.password = hash;
+      next();
+    });
+});
 
+
+User.prototype.comparePassword = function(attemptedPassword, callback) {
+  bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, isMatch);
+    }
+  });
+},
+
+  module.exports = User;
